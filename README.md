@@ -13,6 +13,26 @@ A small UI renderer on Metal: every element is an instanced quad, and its shape 
 
 Not in scope: text shaping and glyph rendering.
 
+## Structure
+
+Features are vertical slices: each folder owns its Swift instance type and its `.metal` shader side by side.
+
+```
+Sources/
+  ShaderTypes/include/   C structs shared by Swift and MSL — one source of truth for buffer layout
+  GPUUI/
+    Scene/               element tree and styles: what to draw, no GPU types
+    Layout/              element tree → frames
+    Renderer/            device, MTKView loop, triple-buffered instance ring, pass encoding
+    Quad/                rounded rect SDF, border, solid and gradient fills
+    Shadow/              analytic blurred rounded-rect shadows
+    Layer/               rounded clips, group opacity, offscreen passes, Gaussian blur
+    Canvas/              Apple Pencil brush stamping into an offscreen texture
+    ShaderLib/           MSL headers reused across slices: SDF helpers, OKLab/OKLCH
+Tests/GPUUITests/
+Examples/                demo apps (macOS for fast iteration, iPad for Pencil)
+```
+
 ## References
 
 - [GPUI](https://github.com/zed-industries/zed/tree/main/crates/gpui) — Zed's Metal UI renderer, the same instanced-quad + SDF approach.
