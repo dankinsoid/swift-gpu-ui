@@ -31,6 +31,7 @@ Sources/
     ShaderLib/           MSL headers reused across slices: SDF helpers, OKLab/OKLCH
 Tests/GPUUITests/
 Examples/                demo apps (macOS for fast iteration, iPad for Pencil)
+Practice/                standalone Metal exercises (Xcode app), not part of the library
 ```
 
 ## References
